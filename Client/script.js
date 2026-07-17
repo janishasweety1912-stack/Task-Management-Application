@@ -1,3 +1,8 @@
+// Allow only logged-in users to access the dashboard
+if (!localStorage.getItem("token")) {
+    window.location.href = "login.html";
+}
+
 // ==================== USER PROFILE ====================
 function loadUserProfile() {
     var userStr = localStorage.getItem('taskflowUser');
@@ -51,130 +56,6 @@ function loadUserProfile() {
 function toggleUserMenu() {
     var d = document.getElementById('userDropdown');
     if (d) d.classList.toggle('show');
-}
-
-// ==================== LOGIN WITH CELEBRATION ====================
-async function handleLogin(e) {
-    e.preventDefault();
-
-    const username = document.getElementById("username").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-
-    if (!username || !email || !password) {
-        showLoginError("Please fill all fields!");
-        return false;
-    }
-    if (password.length < 4) {
-        showLoginError("Password must be at least 4 characters!");
-        return false;
-    }
-    try {
-
-        // Try Login
-        const response = await loginUser({
-            email,
-            password
-        });
-
-        // If login fails, register automatically
-        if (!response.token) {
-            const registerResponse = await registerUser({
-                username,
-                email,
-                password
-            });
-
-            if (registerResponse.message !== "User registered successfully") {
-                showLoginError(registerResponse.message);
-                return false;
-            }
-
-            // Login again after successful registration
-            const loginAgain = await loginUser({
-                email,
-                password
-            });
-            if (!loginAgain.token) {
-                showLoginError("Login failed.");
-                return false;
-            }
-            finishLogin(loginAgain);
-        } else {
-            finishLogin(response);
-        }
-    } catch (err) {
-        console.error(err);
-        showLoginError("Server error. Please try again.");
-    }
-    return false;
-}
-
-function finishLogin(response) {
-    // Save JWT Token
-    localStorage.setItem("token", response.token);
-    // Save User Details
-    localStorage.setItem(
-        "taskflowUser",
-        JSON.stringify(response.user)
-    );
-    // Celebration 🎉
-    confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ["#6366f1", "#8b5cf6", "#f472b6", "#10b981", "#f59e0b"]
-    });
-    setTimeout(() => {
-        showLoginSuccess(
-            "Welcome " + response.user.username + "! 🎉"
-        );
-    }, 1000);
-    setTimeout(() => {
-        window.location.href = "index.html";
-    }, 2000);
-}
-
-function showLoginError(message) {
-    var error = document.getElementById('loginError');
-    if (error) {
-        error.textContent = message;
-        error.style.display = 'block';
-        setTimeout(function() { error.style.display = 'none'; }, 3000);
-    }
-}
-
-function showLoginSuccess(message) {
-    var error = document.getElementById('loginError');
-    if (error) {
-        error.style.background = '#dcfce7';
-        error.style.color = '#16a34a';
-        error.textContent = message;
-        error.style.display = 'block';
-    }
-}
-
-// Check if already logged in
-window.onload = function () {
-    const user = localStorage.getItem("taskflowUser");
-    const token = localStorage.getItem("token");
-    if (user && token) {
-        if (
-            window.location.href.includes("login.html") ||
-            window.location.pathname.includes("login")
-        ) {
-            window.location.href = "index.html";
-        }
-    }
-};
-
-// Logout function for index
-function logout() {
-    if (confirm('Are you sure you want to logout?')) {
-        localStorage.removeItem('taskflowUser');
-        localStorage.removeItem("token");
-        window.location.href = 'login.html';
-    }
 }
 
 document.addEventListener('click', function(e) {
@@ -1251,11 +1132,14 @@ console.log('%c🎯 TaskFlow Pro', 'color: #6366f1; font-size: 20px; font-weight
 console.log('Ctrl+N: New | Ctrl+F: Search | Ctrl+A: Select All | Del: Delete | Esc: Close');
 
 // ==================== INITIALIZE ====================
-loadNotes();
-loadTasks();
-loadUserProfile();
-createFloatingButton();
-updateStreak();
-checkAchievements();
+if(document.getElementById("taskList"))
+{
+    loadNotes();
+    loadTasks();
+    loadUserProfile();
+    createFloatingButton();
+    updateStreak();
+    checkAchievements();
 
-console.log('🎯 All Features Loaded!');
+    console.log('🎯 All Features Loaded!');
+}
