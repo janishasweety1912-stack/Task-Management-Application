@@ -1,4 +1,4 @@
-TASK MANAGEMENT APPLICATION (TaskFlow)
+### TASK MANAGEMENT APPLICATION (TaskFlow)
 
 A feature-rich task management web application with user authentication, productivity tools, and real-time tracking — built with vanilla HTML, CSS, and JavaScript.
 
@@ -6,69 +6,79 @@ A feature-rich task management web application with user authentication, product
 
 🌐 LIVE DEMO
 
-Frontend: task-management-application-jhiglqafx.vercel.app
-Backend API: https://task-management-application-p1ew.onrender.com
+### Frontend: 
+task-management-application-jhiglqafx.vercel.app
+
+### Backend API: 
+https://task-management-application-p1ew.onrender.com
+
+### GitHub Repository:
+https://github.com/janishasweety1912-stack/Task-Management-Application.git
 
 ---
 
-✨ FEATURES
+### ✨ FEATURES
 
-✅ Task Management
-Add, edit, delete, and complete tasks
-Undo delete with a 5-second snackbar
-Drag & drop to reorder tasks
-Bulk select and delete multiple tasks
-Export tasks to CSV
+### ✅ Task Management
+- Add, edit, delete, and complete tasks
+- Undo delete with a 5-second snackbar
+- Drag & drop to reorder tasks
+- Bulk select and delete multiple tasks
+- Export tasks to CSV
 
-🗂️ Organisation
-Categories: Work, Personal, Shopping, Important
-Priority Levels: Low, Medium, High
-Due Dates: with overdue and due-today highlights
-Filters: by category, status (All / Active / Completed), and search
+### 🗂️ Organisation
+- Categories: Work, Personal, Shopping, Important
+- Priority Levels: Low, Medium, High
+- Due Dates: with overdue and due-today highlights
+- Filters: by category, status (All / Active / Completed), and search
 
-👤 User Accounts
-Register and login with email & password
-JWT-based authentication
-Edit profile (update username)
-Logout
+### 👤 User Accounts
+- Register and login with email & password
+- JWT-based authentication
+- Edit profile (update username)
+- Logout
 
-⏱️ Productivity Tools
-Pomodoro Timer — 25/5/15 minute modes, start/pause/reset
-Time Tracking — log minutes spent per task, view total time report
-Focus Mode — hides sidebars for distraction-free work
-Quick Notes — persistent notepad saved to localStorage
+### ⏱️ Productivity Tools
+1. Pomodoro Timer — 25/5/15 minute modes, start/pause/reset
+2. Time Tracking — log minutes spent per task, view total time report
+3. Focus Mode — hides sidebars for distraction-free work
+4. Quick Notes — persistent notepad saved to localStorage
 
-📊 Analytics & Insights
-Live progress ring (% tasks completed)
-Task stats: Total / Done / Remaining
-Analytics modal with category breakdown
-Daily report
-Calendar widget with task indicators
-Due Today & Recent Activity widgets
+### 📊 Analytics & Insights
+- Live progress ring (% tasks completed)
+- Task stats: Total / Done / Remaining
+- Analytics modal with category breakdown
+- Daily report
+- Calendar widget with task indicators
+- Due Today & Recent Activity widgets
 
-🏆 Gamification
-Streak tracking — daily completion streak
-Achievements/Badges — First Step, Getting Started, Half Century, On Fire, Perfectionist
-Confetti celebration when a badge is earned
+### 🏆 Gamification
+- Streak tracking — daily completion streak
+- Achievements/Badges — First Step, Getting Started, Half Century, On Fire, Perfectionist
+- Confetti celebration when a badge is earned
 
-🎨 UI & Experience
-Dark / Light theme toggle (persisted)
-Keyboard shortcuts (see below)
-Sound effects on complete and delete
-Toast notifications
-Floating quick-add button
-Greeting based on time of day
+### 🎨 UI & Experience
+- Dark / Light theme toggle (persisted)
+- Keyboard shortcuts (see below)
+- Sound effects on complete and delete
+- Toast notifications
+- Floating quick-add button
+- Greeting based on time of day
 
-⌨️ Keyboard Shortcuts
+### ⌨️ Keyboard Shortcuts
+
 Shortcut	Action
+
 Ctrl + N	Focus task input (new task)
 Ctrl + F	Focus search bar
 Ctrl + A	Select all tasks
-Delete	Delete selected tasks
-Esc	Close modal / clear selection / exit focus mode
-Enter	Add task (from input field)
+Delete	    Delete selected tasks
+Esc	        Close modal / clear selection / exit focus mode
+Enter	    Add task (from input field)
 
 ---
+
+### PROJECT FOLDER
 
 Task-Management-Application/
 │
@@ -99,12 +109,12 @@ Task-Management-Application/
 
 ---
 
-🔌 API REFERENCE
+### 🔌 API REFERENCE
 Base URL: https://task-management-application-p1ew.onrender.com
 
 ---
 
-Auth
+### AUTH
 
 Method	Endpoint	     Description
 
@@ -113,18 +123,18 @@ POST	/auth/login	     Login and receive a JWT token
 
 ---
 
-Tasks (requires Authorization: Bearer <token> header)
+### Tasks (requires Authorization: Bearer <token> header)
 
-Method	Endpoint	Description
+Method	 Endpoint	  Description
 
-GET	    /tasks	    Get all tasks for the logged-in user
-POST	/tasks	    Create a new task
-PUT	    /tasks/:id	Update a task
-DELETE	/tasks/:id	Delete a task
+GET	     /tasks	      Get all tasks for the logged-in user
+POST	 /tasks	      Create a new task
+PUT	     /tasks/:id	  Update a task
+DELETE	 /tasks/:id	  Delete a task
 
 ---
 
-Task Object
+### Task Object
 {
   "title": "Buy groceries",
   "priority": "Medium",
@@ -134,7 +144,7 @@ Task Object
 
 ---
 
-🛠️ TECH STACK
+### 🛠️ TECH STACK
 
 Layer	    Technology
 
@@ -147,8 +157,8 @@ Icons	    Font Awesome
 
 ---
 
-📝 KNOWN NOTES
+### 📝 KNOWN NOTES
 
-Tasks and settings (theme, notes, badges, streak) are stored in localStorage in addition to the database.
-Time tracking data is stored in localStorage only — it is not synced to the server.
-Recurring tasks are managed client-side.
+- Tasks and settings (theme, notes, badges, streak) are stored in localStorage in addition to the database.
+- Time tracking data is stored in localStorage only — it is not synced to the server.
+- Recurring tasks are managed client-side.
