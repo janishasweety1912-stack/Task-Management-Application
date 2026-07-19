@@ -26,8 +26,7 @@ async function handleLogin(e) {
             email,
             password
         });
-
-        // If user doesn't exist, register automatically
+        alert("Login Successful!");
         if (!response.token) {
             const registerResponse = await registerUser({
                 username,
@@ -113,10 +112,4 @@ function showLoginSuccess(message) {
         error.textContent = message;
         error.style.display = "block";
     }
-}
-
-function logout() {
-    localStorage.removeItem("taskflowUser");
-    localStorage.removeItem("token");
-    window.location.href = "login.html";
 }

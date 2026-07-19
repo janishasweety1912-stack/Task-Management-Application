@@ -1,4 +1,3 @@
-// Allow only logged-in users to access the dashboard
 if (!localStorage.getItem("token")) {
     window.location.href = "login.html";
 }
@@ -199,7 +198,7 @@ async function addTask() {
     const text = input.value.trim();
     const priority = document.getElementById("priority").value;
     const list = document.getElementById("list").value;
-    const dueDate = document.getElementById("dueDate").value;
+    const dueDate = document.getElementById("dueDate").value || null;
     if (text === "") {
         showToast("Please enter a task!", "error");
         input.focus();
@@ -1130,6 +1129,25 @@ document.addEventListener('keydown', function(e) {
 
 console.log('%c🎯 TaskFlow Pro', 'color: #6366f1; font-size: 20px; font-weight: bold;');
 console.log('Ctrl+N: New | Ctrl+F: Search | Ctrl+A: Select All | Del: Delete | Esc: Close');
+
+function openEditProfile() {
+    var user = JSON.parse(localStorage.getItem("taskflowUser"));
+    var newUsername = prompt("Enter your new username:", user.username);
+    if (newUsername && newUsername.trim() !== "") {
+        user.username = newUsername.trim();
+        localStorage.setItem("taskflowUser", JSON.stringify(user));
+        loadUserProfile();
+        showToast("Profile updated successfully!", "success");
+    }
+}
+
+function logout() {
+    if (confirm("Are you sure you want to logout?")) {
+        localStorage.removeItem("taskflowUser");
+        localStorage.removeItem("token");
+        window.location.href = "login.html";
+    }
+}
 
 // ==================== INITIALIZE ====================
 if(document.getElementById("taskList"))

@@ -1,37 +1,34 @@
-const BASE_URL = "https://task-management-application-p1ew.onrender.com";
+const BASE_URL = "https://task-management-application-p1ew.onrender.com/api";
 
 async function registerUser(userData) {
     const response = await fetch(`${BASE_URL}/auth/register`, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData)
     });
-
-    return response.json();
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message || "Request failed");
+    return data;
 }
 
 async function loginUser(userData) {
     const response = await fetch(`${BASE_URL}/auth/login`, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData)
     });
-
-    return response.json();
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message || "Request failed");
+    return data;
 }
 
 async function getTasks(token) {
     const response = await fetch(`${BASE_URL}/tasks`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
+        headers: { Authorization: `Bearer ${token}` }
     });
-
-    return response.json();
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message || "Request failed");
+    return data;
 }
 
 async function createTask(task, token) {
@@ -43,8 +40,9 @@ async function createTask(task, token) {
         },
         body: JSON.stringify(task)
     });
-
-    return response.json();
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message || "Request failed");
+    return data;
 }
 
 async function updateTask(id, task, token) {
@@ -56,17 +54,17 @@ async function updateTask(id, task, token) {
         },
         body: JSON.stringify(task)
     });
-
-    return response.json();
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message || "Request failed");
+    return data;
 }
 
 async function deleteTaskAPI(id, token) {
     const response = await fetch(`${BASE_URL}/tasks/${id}`, {
         method: "DELETE",
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
+        headers: { Authorization: `Bearer ${token}` }
     });
-
-    return response.json();
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message || "Request failed");
+    return data;
 }
